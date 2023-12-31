@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LoginComponent },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] }, // Add the route for the new component
+  // { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
 

@@ -28,8 +28,7 @@ router.post("/login", function (req, res, next) {
           password: psw
         };
 
-        jwt.sign({user}, fileUtil.getFiledataFromJsonToObjects("bin/configs/secret.json").jwtsecret, (err,token)=>{
-            res.cookie('token', token, { httpOnly: true, secure: true });
+        jwt.sign({user}, fileUtil.getFiledataFromJsonToObjects("bin/configs/secret.json").jwtsecret,{expiresIn: fileUtil.getFiledataFromJsonToObjects("bin/configs/secret.json").jwtexpiredinseconds}, (err,token)=>{
             const response = {
               status: 200,
               token: token,
@@ -54,9 +53,20 @@ router.post("/login", function (req, res, next) {
     });
 });
 
+router.get("/isTokenExpired",verifyToken,function(req,res){
+  jwt.verify(req.token, fileUtil.getFiledataFromJsonToObjects("bin/configs/secret.json").jwtsecret, function(err, decoded) {
+    if(err){
+      res.status(200).json({ isExpired: true });
+    }
+    else {
+      res.status(200).json({ isExpired: false });
+    }
+  });
+});
+
 router.get("/profile",verifyToken,function (req, res) {
 
-    jwt.verify(token, fileUtil.getFiledataFromJsonToObjects("bin/configs/secret.json").jwtsecret, function(err, decoded) {
+    jwt.verify(req.token, fileUtil.getFiledataFromJsonToObjects("bin/configs/secret.json").jwtsecret, function(err, decoded) {
       if(err){
         res.sendStatus(403);
       }
