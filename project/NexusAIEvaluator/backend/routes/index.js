@@ -1,6 +1,7 @@
 const express = require('express')
 const cors = require('cors');
 const router = express.Router();
+const ratelimiter = require("../bin/classes/middleware/ratelimiter");
 
 const corsOptions = {
   origin: 'http://localhost:4200', // Replace with your Angular app's URL
@@ -11,7 +12,7 @@ const corsOptions = {
 
 router.use(cors(corsOptions));
 /* GET home page. */
-router.get('/', async (req, res, next) => {
+router.get('/',ratelimiter,async (req, res, next) => {
   const response = {
       status: 200
   }

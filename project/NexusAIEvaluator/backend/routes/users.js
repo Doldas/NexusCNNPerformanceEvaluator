@@ -4,6 +4,7 @@ const router = express.Router();
 const htmlUtil = require("../bin/classes/utils/htmlutil");
 const accountCtrl = require("../bin/controllers/usercontroller");
 const fileUtil = require("../bin/classes/utils/FileUtil");
+const ratelimiter = require("../bin/classes/middleware/ratelimiter");
 const cors = require('cors');
 
 const corsOptions = {
@@ -15,7 +16,7 @@ const corsOptions = {
 
 router.use(cors(corsOptions));
 
-router.post("/login", function (req, res, next) {
+router.post("/login",ratelimiter, function (req, res, next) {
   const username = htmlUtil.escapeText(req.body.username.toLowerCase());
   const psw = htmlUtil.escapeText(req.body.password);
   accountCtrl
@@ -53,7 +54,7 @@ router.post("/login", function (req, res, next) {
     });
 });
 
-router.get("/isTokenExpired",verifyToken,function(req,res){
+router.get("/isTokenExpired",ratelimiter,verifyToken,function(req,res){
   jwt.verify(req.token, fileUtil.getFiledataFromJsonToObjects("bin/configs/secret.json").jwtsecret, function(err, decoded) {
     if(err){
       res.status(200).json({ isExpired: true });
@@ -64,7 +65,7 @@ router.get("/isTokenExpired",verifyToken,function(req,res){
   });
 });
 
-router.get("/profile",verifyToken,function (req, res) {
+router.get("/profile",ratelimiter,verifyToken,function (req, res) {
 
     jwt.verify(req.token, fileUtil.getFiledataFromJsonToObjects("bin/configs/secret.json").jwtsecret, function(err, decoded) {
       if(err){

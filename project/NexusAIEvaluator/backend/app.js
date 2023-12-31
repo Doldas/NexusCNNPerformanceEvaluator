@@ -11,7 +11,7 @@ var multer = require('multer');
 var upload = multer();
 var cors = require('cors')
 var migration = require('./bin/classes/database/migrations/migration_init');
-var RateLimit = require('express-rate-limit');
+var rateLimiter = require('./bin/classes/middleware/ratelimiter');
 migration.runMigration();
 
 // view engine setup
@@ -45,17 +45,8 @@ app.use(function(req, res, next) {
   next(createError(404));
 });
 
-// set up rate limiter: maximum of five requests per minute
-
-var limiter = RateLimit({
-  windowMs: 60 * 1000, // 15 minutes
-  max: 100, // max 100 requests per windowMs
-  message: "You have exceeded your 100 requests per minute limit.",
-  headers: true,
-});
-
 // apply rate limiter to all requests
-app.use(limiter);
+app.use(rateLimiter);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
