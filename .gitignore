@@ -41,3 +41,6 @@ Thumbs.db
 # application
 storage/datasets/
 storage/working-directory/
+project/NexusAIEvaluator/backend/configs/dbconnect.json
+project/NexusAIEvaluator/backend/configs/default_admin_user.json
+project/NexusAIEvaluator/backend/configs/secret.json
