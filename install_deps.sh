@@ -13,5 +13,9 @@ cd ../backend
 # install the dependencies for the backend server
 npm install
 
+# install python dependencies
+pip install Flask
+pip install pydicom
+
 # change back to root directory
 cd ../../../
