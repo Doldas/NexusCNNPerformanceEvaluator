@@ -16,7 +16,7 @@ module.exports = {
                   sql = FILEUTIL.getFiledataAsString("./database.sql");
                   client.query(sql).then(res=>{
                     // Creating the admin user if not existing
-                    adminUser = FILEUTIL.getFiledataFromJsonToObjects("./bin/configs/default_admin_user.json");
+                    adminUser = FILEUTIL.getFiledataFromJsonToObjects("./configs/default_admin_user.json");
                     const args = [];
                     args.push(adminUser.username);
                     // does the admin user exist?

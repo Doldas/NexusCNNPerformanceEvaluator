@@ -1,0 +1,13 @@
+/* ai-models-settings.component.css */
+.dropdown {
+  margin-bottom: 20px;
+}
+
+.dropdown select {
+  width: 100%;
+  padding: 8px;
+}
+
+.checkbox {
+  margin-bottom: 0px;
+}

@@ -2,7 +2,6 @@ import { Injectable,Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { DOCUMENT } from "@angular/common";
-
 @Injectable({
   providedIn: 'root'
 })
@@ -18,6 +17,10 @@ export class AuthService {
   login(username: string, password: string): Observable<any> {
     const loginData = { username, password };
     return this.http.post<any>(`${this.apiUrl}/login`, loginData);
+  }
+
+  isTokenExpired(): Observable<any>{
+      return this.http.get<any>(`${this.apiUrl}/isTokenExpired`);
   }
 
   logout(): void {

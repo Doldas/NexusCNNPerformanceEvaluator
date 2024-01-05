@@ -11,6 +11,7 @@ var multer = require('multer');
 var upload = multer();
 var cors = require('cors')
 var migration = require('./bin/classes/database/migrations/migration_init');
+var rateLimiter = require('./bin/classes/middleware/ratelimiter');
 migration.runMigration();
 
 // view engine setup
@@ -43,6 +44,9 @@ app.use('/users', usersRouter);
 app.use(function(req, res, next) {
   next(createError(404));
 });
+
+// apply rate limiter to all requests
+app.use(rateLimiter);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
