@@ -27,9 +27,9 @@ Made to work with both Linux and Windows.
 6. Install Python 3 and pip
 7. Configure database settings in *"project/NexusAIEvaluator/backend/configs/dbconnect.json"*
 
-In ./Frontend execute **npm install** cmd to install all dependencies.
-In ./Backend execute **npm install** cmd to install all dependencies.
-** In linux install_deps.sh can be used, In windows install_deps.bat can be used. **
+In ./Frontend execute **npm install** cmd to install all server dependencies.
+In ./Backend execute **npm install** cmd to install all server dependencies.
+*In linux install_deps.sh and in windows install_deps.bat can be used to install all required server dependencies.*
 
 ## Using
 To start the backend and frontend servers use a terminal and run **start_servers.bat** (Windows) or **start_servers.sh** (Linux).
