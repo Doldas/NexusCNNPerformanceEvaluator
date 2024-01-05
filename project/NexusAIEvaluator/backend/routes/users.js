@@ -29,7 +29,7 @@ router.post("/login",ratelimiter, function (req, res, next) {
           password: psw
         };
 
-        jwt.sign({user}, fileUtil.getFiledataFromJsonToObjects("bin/configs/secret.json").jwtsecret,{expiresIn: fileUtil.getFiledataFromJsonToObjects("bin/configs/secret.json").jwtexpiredinseconds}, (err,token)=>{
+        jwt.sign({user}, fileUtil.getFiledataFromJsonToObjects("configs/secret.json").jwtsecret,{expiresIn: fileUtil.getFiledataFromJsonToObjects("configs/secret.json").jwtexpiredinseconds}, (err,token)=>{
             const response = {
               status: 200,
               token: token,
@@ -55,7 +55,7 @@ router.post("/login",ratelimiter, function (req, res, next) {
 });
 
 router.get("/isTokenExpired",ratelimiter,verifyToken,function(req,res){
-  jwt.verify(req.token, fileUtil.getFiledataFromJsonToObjects("bin/configs/secret.json").jwtsecret, function(err, decoded) {
+  jwt.verify(req.token, fileUtil.getFiledataFromJsonToObjects("configs/secret.json").jwtsecret, function(err, decoded) {
     if(err){
       res.status(200).json({ isExpired: true });
     }
@@ -67,7 +67,7 @@ router.get("/isTokenExpired",ratelimiter,verifyToken,function(req,res){
 
 router.get("/profile",ratelimiter,verifyToken,function (req, res) {
 
-    jwt.verify(req.token, fileUtil.getFiledataFromJsonToObjects("bin/configs/secret.json").jwtsecret, function(err, decoded) {
+    jwt.verify(req.token, fileUtil.getFiledataFromJsonToObjects("configs/secret.json").jwtsecret, function(err, decoded) {
       if(err){
         res.sendStatus(403);
       }

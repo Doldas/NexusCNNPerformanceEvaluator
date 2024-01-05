@@ -6,7 +6,7 @@ module.exports = {
   dbConnect() {
     return new Promise((res,rej) =>{
       try{
-        const dbconf = JSON.parse(fs.readFileSync("./bin/configs/dbconnect.json",
+        const dbconf = JSON.parse(fs.readFileSync("./configs/dbconnect.json",
         "utf8"));  
         try{
           res( new PG.Pool({

@@ -1,0 +1,16 @@
+/* control-panel.component.css */
+:host {
+  display: block;
+  height: 100%;
+  width: 35%;
+  padding: 20px;
+  box-sizing: border-box;
+  border-right: 5px solid #ccc; /* Border for the 3D effect */
+  box-shadow: 5px 0px 10px rgba(0, 0, 0, 0.1); /* Right box shadow for the 3D effect */
+}
+
+.control-panel {
+  background-color: #f0f0f0; /* Add your desired background color */
+  padding: 20px;
+  box-sizing: border-box;
+}

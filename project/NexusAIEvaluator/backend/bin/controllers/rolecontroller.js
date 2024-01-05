@@ -12,7 +12,7 @@ module.exports = {
       });
   },
   async hasRole(user_token, rolename){
-    let result = jwt.verify(user_token, fileUtil.getFiledataFromJsonToObjects("bin/configs/secret.json").jwtsecret, (err, authData) => {
+    let result = jwt.verify(user_token, fileUtil.getFiledataFromJsonToObjects("configs/secret.json").jwtsecret, (err, authData) => {
       if (err)
         return false;
       else {
