@@ -8,6 +8,5 @@ def get_index():
 
 @status_api.route("/status/", methods=['GET'])
 def get_status():
-    jd = {'status': 'OK'}
-    data = json.dumps(jd)
+    data = json.dumps({'status': 'OK'})
     return Response(data, status=200, mimetype='application/json')

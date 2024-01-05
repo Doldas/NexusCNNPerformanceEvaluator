@@ -19,6 +19,9 @@ start npm install
 start cmd /k
 :: install python dependencies
 start pip install Flask
+start pip install pillow
 start pip install pydicom
+start pip install Image
+start pip install pathlib
 
 cd ..\..\..\

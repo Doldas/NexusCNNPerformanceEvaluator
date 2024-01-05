@@ -2,15 +2,30 @@ from pathlib import Path
 from pydicom import dcmread
 from PIL import Image
 
-
-# creates a new image file with file extension of convert_to from a dicom file
 def dicomfile_to_imagefile(dcmfile_path, convert_to):
-    # converts the path to postix format
-    dcmfile_path = dcmfile_path.replace("\\", "/")
-    # Read the dcm file
-    im = Image.fromarray(dcmread(dcmfile_path).pixel_array)
-    # Convert each 16bit pixel value into 8bit. each RGB channel sets to the new value
-    im = im.point(lambda luminance: luminance*(255/65535))
-    im = im.convert('RGB')
-    # Save as .jpg and .png
-    im.save(Path(dcmfile_path.replace(".dcm", "."+convert_to)))
+    # Convert the path to Posix format
+    dcmfile_path = Path(dcmfile_path).resolve().as_posix()
+
+    try:
+        # Read the DICOM file
+        dicom_data = dcmread(dcmfile_path)
+        
+        # Create an image from the pixel array
+        im = Image.fromarray(dicom_data.pixel_array)
+        
+        # Convert pixel values to 8-bit
+        im = im.point(lambda luminance: luminance * (255 / 65535))
+        
+        # Convert to RGB mode
+        im = im.convert('RGB')
+
+        # Save as the specified format
+        output_path = Path(dcmfile_path.replace(".dcm", f".{convert_to}"))
+        im.save(output_path)
+
+        return output_path.as_posix()
+
+    except Exception as e:
+        # Handle exceptions (e.g., file reading or image processing errors)
+        print(f"Error converting DICOM to {convert_to}: {e}")
+        return None
