@@ -4,6 +4,7 @@ from typing import Final
 from flask import Flask
 from controllers.dicomcontroller import dicom_api, clear_dicomapi
 from controllers.statuscontroller import status_api
+from controllers.imagecontroller import image_api
 
 DEFAULT_PORT: Final[int] = 4100
 
@@ -21,6 +22,7 @@ def run_server():
     # Register api controllers
     app.register_blueprint(dicom_api)
     app.register_blueprint(status_api)
+    app.register_blueprint(image_api)
 
     @app.teardown_request
     def teardown_request(exception=None):
