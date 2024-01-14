@@ -26,6 +26,7 @@
 !.vscode/extensions.json
 
 # misc
+.idea*
 .venv*
 /.sass-cache
 /connect.lock
