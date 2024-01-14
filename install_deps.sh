@@ -14,11 +14,16 @@ cd ../backend
 npm install
 
 # install python dependencies
-pip install Flask
-pip install pillow
-pip install pydicom
-pip install Image
-pip install pathlib
-
+pip3 install Flask --break-system-packages
+pip3 install typing --break-system-packages
+pip3 install pillow --break-system-packages
+pip3 install pydicom --break-system-packages
+pip3 install Image --break-system-packages
+pip3 install pathlib --break-system-packages
+pip3 install numpy --break-system-packages
+pip3 install scikit-image --break-system-packages
+pip3 install opencv-python --break-system-packages
+pip3 install torchvision --break-system-packages
+pip3 install PyWavelets --break-system-packages
 # change back to root directory
 cd ../../../
