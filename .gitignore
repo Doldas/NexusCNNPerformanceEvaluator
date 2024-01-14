@@ -16,6 +16,7 @@
 *.launch
 .settings/
 *.sublime-workspace
+*__pycache__*
 
 # IDE - VSCode
 .vscode/*
@@ -25,6 +26,8 @@
 !.vscode/extensions.json
 
 # misc
+.idea*
+.venv*
 /.sass-cache
 /connect.lock
 /coverage
