@@ -4,13 +4,13 @@ import { PerfanalyzerComponent } from './perfanalyzer/perfanalyzer.component';
 import { ConsolewindowComponent } from './perfanalyzer/consolewindow/consolewindow.component';
 import { ControlpanelComponent } from './perfanalyzer/controlpanel/controlpanel.component';
 import { AiperfanalyzerformComponent } from './perfanalyzer/controlpanel/aiperfanalyzerform/aiperfanalyzerform.component';
-import { FormsModule } from '@angular/forms';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [PerfanalyzerComponent,ConsolewindowComponent,ControlpanelComponent, AiperfanalyzerformComponent],
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule
   ],
   exports:[
     PerfanalyzerComponent
