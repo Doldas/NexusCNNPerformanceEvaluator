@@ -1,22 +1,21 @@
 <div class="content">
-  <form>
+  <form [formGroup]="filterForm" (ngSubmit)="onSubmit()">
     <!-- General Settings -->
     <div class="content">
       <fieldset>
         <legend>General Settings</legend>
         <fieldset>
           <label for="general-generaterandom"><b>Generate Random</b></label>
-          <input type="checkbox" name="general-generaterandom" id="general-generaterandom" checked />
+          <input type="checkbox" formControlName="generateRandom" id="general-generaterandom" />
           <hr>
           <label for="general-nrofrandfilters"><b>Nr of random settings per filter:</b></label>
-          <input type="number" name="general-nrofrandfilters" id="general-nrofrandfilters" min="1" step="1" value="1"/>
+          <input type="number" formControlName="numberOfRandomFilters" id="general-nrofrandfilters" min="1" step="1" />
         </fieldset>
         <fieldset>
           <label for="general-nrofcombinations"><b>Nr of Combinations:</b></label>
-          <input type="number" name="general-nrofcombinations" id="general-nrofcombinations" min="1" step="1" value="1"/>
+          <input type="number" formControlName="numberOfCombinations" id="general-nrofcombinations" min="1" step="1" />
         </fieldset>
       </fieldset>
-
     </div>
     <!-- AI Models Settings -->
     <div class="content">
@@ -39,24 +38,6 @@
       </fieldset>
     </div>
     <!-- Image enhancement -->
-    <div class="content">
-      <!-- Background Removal -->
-      <fieldset>
-        <legend>Background Removal:</legend>
-        <div class="row">
-          <label for="filter-rollingball">Rolling Ball:</label>
-          <input type="checkbox" name="filter-rollingball" id="filter-rollingball" class="filter" [(ngModel)]="rollingBallEnabled" />
-        </div>
-        <div *ngIf="rollingBallEnabled" class="filter-settings">
-          <ng-container *ngFor="let param of rollingBallParams | keyvalue">
-            <label [for]="'filter-rollingball-param-' + param.key"><small>{{ param.key }}:</small></label>
-            <select [id]="'filter-rollingball-param-' + param.key" [name]="'filter-rollingball-param-' + param.key" class="filter-param" [(ngModel)]="param.value.value">
-              <option *ngFor="let preset of param.value.presets" [value]="preset">{{ preset }}</option>
-            </select>
-          </ng-container>
-        </div>
-      </fieldset>
-    </div>
+    <button type="submit">Apply Filters</button>
   </form>
 </div>
-
